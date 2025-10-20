@@ -141,10 +141,10 @@ namespace Jellyfin.Plugin.MergeVersions
                             IncludeItemTypes = [BaseItemKind.Movie],
                             IsVirtualItem = false,
                             Recursive = true,
-                            HasTmdbId = true,
                         }
                 )
                 .Select(m => m as Movie)
+                .Where(m => m.ProviderIds.ContainsKey("Tmdb"))
                 .Where(IsEligible)
                 .ToList();
         }
